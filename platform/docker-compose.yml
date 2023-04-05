@@ -1,0 +1,115 @@
+---
+
+########
+########          DO NOT FORGET TO EDIT ENV VARIABLES 
+########                  FOR DB CONTAINERS 
+########                    IN PRODUCTION
+########
+
+
+version: "3.9"
+services:
+  rabbitmq:
+    image: rabbitmq:3.11.4-management-alpine
+    container_name: rabbitmq
+    hostname: microservices_march
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq/
+      - rabbit-log:/var/log/rabbitmq/
+    networks:
+      - test
+
+
+  users-postgres:
+    image: postgres
+    container_name: users-db-postgres
+    environment:
+      POSTGRES_USER: transactions50adminUsers
+      POSTGRES_PASSWORD: RabbitMQconfigurationbypullingfromthesystem#Users
+      POSTGRES_DB: usersPostgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/users-data
+    networks:
+      - test
+
+  transactions-postgres:
+    image: postgres
+    container_name: transactions-db-postgres
+    environment:
+      POSTGRES_USER: transactions50adminTransactions
+      POSTGRES_PASSWORD: RabbitMQconfigurationbypullingfromthesystem#Transactions
+      POSTGRES_DB: transactions
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/transactions-data
+      - ./transactions-schema.sql:/docker-entrypoint-initdb.d/transactions-schema.sql
+    networks:
+      - test
+
+
+
+  users-mongo:
+    image: mongo
+    container_name: users-db-mongo
+    environment:
+      MONGO_INITDB_DATABASE: users_dev
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - test
+
+
+
+
+
+  consul-server:
+    image: hashicorp/consul:1.14.4
+    container_name: consul-server
+    restart: always
+    volumes:
+      - ./consul/server.json:/consul/config/server.json:ro
+    networks:
+      - test
+    ports:
+      - 8500:8500
+      - 8600:8600/tcp
+      - 8600:8600/udp
+    command: agent
+
+  consul-client:
+    image: hashicorp/consul:1.14.4
+    container_name: consul-client
+    restart: always
+    volumes:
+      - ./consul/client.json:/consul/config/client.json:ro
+    networks:
+      - test
+    command: agent
+
+
+
+
+
+
+
+
+volumes:
+  rabbit-data:
+  rabbit-log:
+  pg-data:
+  mongo-data:
+
+networks:
+  test:
+    name: test
+    driver: bridge
