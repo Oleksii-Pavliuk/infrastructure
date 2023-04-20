@@ -1,6 +1,7 @@
 #!/bin/bash
-set -e
+source .env
 
+set -e
 #General configs
 NODE_ENV="development" #change in production
 PORT=3000
@@ -25,7 +26,6 @@ CONSUL_PORT=8500
 
 
 # Auth service configurations (django rest app for authentication)
-AUTH_HOST="localhost" #change in production
 AUTH_API_KEY=${AUTH_API_KEY}  #secret, specify each run (instructions in auth app readme)
 
 # RabbitMQ configs
@@ -48,7 +48,6 @@ docker run \
   -e CONSUL_SERVICE_NAME="${CONSUL_SERVICE_NAME}" \
   -e CONSUL_HOST="${CONSUL_HOST}" \
   -e CONSUL_PORT="${CONSUL_PORT}" \
-  -e AUTH_HOST="${AUTH_HOST}" \
   -e AUTH_API_KEY="${AUTH_API_KEY}" \
   -e AMQPPORT="${AMQPPORT}" \
   -e AMQPHOST="${AMQPHOST}" \

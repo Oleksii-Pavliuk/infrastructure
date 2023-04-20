@@ -1,4 +1,6 @@
 #!/bin/bash
+source .env
+
 set -e
 CONSUL_HOST=consul-client #change in production
 CONSUL_PORT=8500 
@@ -10,6 +12,7 @@ DB_PORT=5432
 DB_USER="transactions50adminUsers" #secret
 DB_PASSWORD="RabbitMQconfigurationbypullingfromthesystem#Users" #secret
 KEY=${DJANGO_KEY}
+DJANGO_DEBUG_BOOLEAN=False
 SERVICE_HOST="*" #change in production
 
 
@@ -24,6 +27,7 @@ docker run \
   -e SERVICE_NAME="${SERVICE_NAME}" \
   -e SERVICE_HOST="${SERVICE_HOST}" \
   -e KEY="${KEY}" \
+  -e DJANGO_DEBUG_BOOLEAN=${DJANGO_DEBUG_BOOLEAN} \
   -e DB_NAME="${DB_NAME}" \
   -e DB_HOST="${DB_HOST}" \
   -e DB_PORT="${DB_PORT}" \
