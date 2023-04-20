@@ -1,6 +1,7 @@
 #!/bin/bash
-set -e
+source .env
 
+set -e
 #General configs
 NODE_ENV="development" #change in production
 PORT=3000

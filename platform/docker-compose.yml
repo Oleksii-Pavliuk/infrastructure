@@ -27,9 +27,9 @@ services:
     image: postgres
     container_name: users-db-postgres
     environment:
-      POSTGRES_USER: transactions50adminUsers
-      POSTGRES_PASSWORD: RabbitMQconfigurationbypullingfromthesystem#Users
-      POSTGRES_DB: usersPostgres
+      - POSTGRES_USER=transactions50adminUsers
+      - POSTGRES_PASSWORD=RabbitMQconfigurationbypullingfromthesystem#Users
+      - POSTGRES_DB=usersPostgres
     ports:
       - "5432:5432"
     volumes:
@@ -37,13 +37,14 @@ services:
     networks:
       - test
 
+
   transactions-postgres:
     image: postgres
     container_name: transactions-db-postgres
     environment:
-      POSTGRES_USER: transactions50adminTransactions
-      POSTGRES_PASSWORD: RabbitMQconfigurationbypullingfromthesystem#Transactions
-      POSTGRES_DB: transactions
+      - POSTGRES_USER=transactions50adminTransactions
+      - POSTGRES_PASSWORD=RabbitMQconfigurationbypullingfromthesystem#Transactions
+      - POSTGRES_DB=transactions
     ports:
       - "5433:5432"
     volumes:
@@ -53,14 +54,13 @@ services:
       - test
 
 
-
   users-mongo:
     image: mongo
     container_name: users-db-mongo
     environment:
-      MONGO_INITDB_DATABASE: users_dev
-      MONGO_INITDB_ROOT_USERNAME: user
-      MONGO_INITDB_ROOT_PASSWORD: password
+      - MONGO_INITDB_DATABASE=users_dev
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=password
     ports:
       - "27017:27017"
     volumes:
@@ -69,7 +69,28 @@ services:
       - test
 
 
+  redis-json:
+    image: redis/redis-stack:latest
+    container_name: users-redis
+    environment:
+      - REDIS_PASSWORD=mypassword
+    ports:
+      - "6379:6379"
+    networks:
+      - test
 
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - test
 
 
   consul-server:
@@ -95,9 +116,6 @@ services:
     networks:
       - test
     command: agent
-
-
-
 
 
 
