@@ -3,7 +3,7 @@ source .env
 
 set -e
 #General configs
-NODE_ENV="development" #change in production
+NODE_ENV="test" #change in production
 PORT=3000
 JWT_KEY="development-jwt-key" #secret, change in production(use open ssl)
 
