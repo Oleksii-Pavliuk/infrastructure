@@ -7,15 +7,6 @@ CREATE TABLE transactions_internal (
   time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE transactions_external (
-  id SERIAL PRIMARY KEY,
-  sender_id INTEGER NOT NULL,
-  reciever_account TEXT NOT NULL,
-  description TEXT,
-  amount NUMERIC(10, 2) NOT NULL,
-  time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
 
 CREATE TABLE transactions_eth (
   id SERIAL PRIMARY KEY,
@@ -38,6 +29,25 @@ CREATE TABLE withdraws_fiat (
 );
 
 CREATE TABLE withdraws_eth (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  user_wallet TEXT NOT NULL,
+  description TEXT,
+  amount NUMERIC(10, 2) NOT NULL,
+  time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE deposit_fiat (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  user_account TEXT NOT NULL,
+  description TEXT,
+  amount NUMERIC(10, 2) NOT NULL,
+  time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE deposits_eth (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL,
   user_wallet TEXT NOT NULL,
