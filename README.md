@@ -16,9 +16,10 @@ It consists of 6 microservices:
  - Transactions service
  - Walet integration service
  - Notification service
-
 And UI app
-<img width="895" alt="Screenshot 2023-04-04 at 11 16 03 am" src="https://user-images.githubusercontent.com/71220725/229661212-803393b4-1627-44c0-8137-e251817aae1c.png">
+
+
+![Screenshot 2023-04-23 at 11 20 10 am](https://user-images.githubusercontent.com/71220725/233814165-94bcbd51-b09b-4efd-a63b-c60606e3654c.png)
 
 
 ### Infrastructure: 
