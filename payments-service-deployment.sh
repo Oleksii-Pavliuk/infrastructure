@@ -6,11 +6,8 @@ set -e
 NODE_ENV="development" #change in production
 PORT=3001
 
-#Postgre configs
-POSTGRES_USER="transactions50adminTransactions" #secret
-PGHOST="transactions-db-posgres"
-PGPORT=5433
-PGPASSWORD="RabbitMQconfigurationbypullingfromthesystem#Transactions" #secret
+#Redis config
+REDIS_STRING="redis://users-redis:6379" #secret
 
 
 #Consul setting
@@ -29,10 +26,7 @@ docker run \
   -it \
   -e NODE_ENV="${NODE_ENV}" \
   -e PORT="${PORT}" \
-  -e PGUSER="${POSTGRES_USER}" \
-  -e PGHOST="${PGHOST}" \
-  -e PGPORT="${PGPORT}" \
-  -e PGPASSWORD="${PGPASSWORD}" \
+  -e REDIS_STRING="${REDIS_STRING}" \
   -e CONSUL_SERVICE_NAME="${CONSUL_SERVICE_NAME}" \
   -e CONSUL_HOST="${CONSUL_HOST}" \
   -e CONSUL_PORT="${CONSUL_PORT}" \
@@ -40,4 +34,4 @@ docker run \
   -e AMQPHOST="${AMQPHOST}" \
   -p $PORT:3001 \
   --network test \
-  transactions-express
+  payments-express
