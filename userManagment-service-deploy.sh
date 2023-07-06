@@ -16,6 +16,8 @@ PGPASSWORD="RabbitMQconfigurationbypullingfromthesystem#Transactions" #secret
 
 #Mongodb configs
 MONGOSTRING="mongodb://users-db-mongo:27017/users_dev" #secret
+MONGOUSER="user" #secret
+MONGOPASSWORD="password" #secret
 
 #Redis config
 REDIS_STRING="redis://users-redis:6379"
@@ -46,6 +48,8 @@ docker run \
   -e PGPORT="${PGPORT}" \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e MONGOSTRING="${MONGOSTRING}" \
+  -e MONGOUSER="${MONGOUSER}" \
+  -e MONGOPASSWORD="${MONGOPASSWORD}" \
   -e REDIS_STRING="${REDIS_STRING}" \
   -e CONSUL_SERVICE_NAME="${CONSUL_SERVICE_NAME}" \
   -e CONSUL_HOST="${CONSUL_HOST}" \
@@ -56,3 +60,6 @@ docker run \
   -p $PORT:3000 \
   --network test \
   user-managment-express
+
+#Verify
+docker ps

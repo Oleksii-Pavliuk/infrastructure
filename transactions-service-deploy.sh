@@ -41,3 +41,7 @@ docker run \
   -p $PORT:3001 \
   --network test \
   transactions-express
+
+
+#Verify
+docker ps
