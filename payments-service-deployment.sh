@@ -4,14 +4,14 @@ source .env
 set -e
 #General configs
 NODE_ENV="development" #change in production
-PORT=3001
+PORT=3002
 
 #Redis config
 REDIS_STRING="redis://users-redis:6379" #secret
 
 
 #Consul setting
-CONSUL_SERVICE_NAME="transactions"
+CONSUL_SERVICE_NAME="payments"
 CONSUL_HOST="consul-client" #change in production
 CONSUL_PORT=8500
 
@@ -21,7 +21,7 @@ AMQPPORT=5672
 AMQPHOST="rabbitmq"
 
 docker run \
-  --name transactions-service\
+  --name payments-service\
   --rm \
   -it \
   -e NODE_ENV="${NODE_ENV}" \
@@ -32,6 +32,6 @@ docker run \
   -e CONSUL_PORT="${CONSUL_PORT}" \
   -e AMQPPORT="${AMQPPORT}" \
   -e AMQPHOST="${AMQPHOST}" \
-  -p $PORT:3001 \
+  -p $PORT:3002 \
   --network test \
   payments-express
