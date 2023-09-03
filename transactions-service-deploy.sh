@@ -14,7 +14,7 @@ PGPASSWORD="RabbitMQconfigurationbypullingfromthesystem#Transactions" #secret
 
 
 #Consul setting
-CONSUL_SERVICE_NAME="transactions"
+CONSUL_SERVICE_NAME="Transactions Service"
 CONSUL_HOST="consul-client" #change in production
 CONSUL_PORT=8500
 

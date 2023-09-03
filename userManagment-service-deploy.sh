@@ -24,7 +24,7 @@ REDIS_STRING="redis://users-redis:6379"
 
 
 #Consul setting
-CONSUL_SERVICE_NAME="userManagment"
+CONSUL_SERVICE_NAME="Users Managment Service"
 CONSUL_HOST="consul-client" #change in production
 CONSUL_PORT=8500
 
