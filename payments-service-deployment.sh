@@ -11,7 +11,7 @@ REDIS_STRING="redis://users-redis:6379" #secret
 
 
 #Consul setting
-CONSUL_SERVICE_NAME="payments"
+CONSUL_SERVICE_NAME="Payments Service"
 CONSUL_HOST="consul-client" #change in production
 CONSUL_PORT=8500
 
