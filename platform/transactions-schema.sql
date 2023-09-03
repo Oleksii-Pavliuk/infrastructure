@@ -1,4 +1,4 @@
-CREATE TABLE transactions_internal (
+CREATE TABLE transactions_fiat (
   id SERIAL PRIMARY KEY,
   sender_id INTEGER NOT NULL,
   reciever_id INTEGER NOT NULL,
